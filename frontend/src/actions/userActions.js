@@ -173,7 +173,8 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       payload: message,
     });
   }
-}; // import axios from "axios";
+};
+// import axios from "axios";
 // import {
 //   USER_LOGIN_FAIL,
 //   USER_LOGIN_REQUEST,
