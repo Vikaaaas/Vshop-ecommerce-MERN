@@ -71,6 +71,17 @@ const products = [
     rating: 4,
     numReviews: 12,
   },
+  {
+    name: "Personlized headphone",
+    image: "/images/headphone.jpg",
+    description: "Just a random product for testing the site",
+    brand: "My-Brand",
+    category: "Electronics",
+    price: 20,
+    countInStock: 10,
+    rating: 4.1,
+    numReviews: 12,
+  },
 ];
 
 export default products;
