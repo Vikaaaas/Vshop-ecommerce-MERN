@@ -21,7 +21,9 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(`/${redirect}`);
+      location.search ? navigate(`/${redirect}`) : navigate("/");
+      //navigate(`/${redirect}`);
+      //navigate(redirect);
     }
   }, [navigate, userInfo, redirect]);
 
