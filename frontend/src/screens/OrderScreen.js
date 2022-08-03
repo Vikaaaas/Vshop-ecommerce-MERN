@@ -30,7 +30,7 @@ const OrderScreen = () => {
 
   useEffect(() => {
     dispatch(getOrderDetails(orderId));
-  }, [dispatch]);
+  }, [dispatch, orderId]);
 
   return loading ? (
     <Loader />
