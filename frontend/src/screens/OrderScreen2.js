@@ -7,18 +7,19 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../Components/Message";
 import Loader from "../Components/Loader";
 import {
-  deliverOrder,
   getOrderDetails,
   payOrder,
+  deliverOrder,
 } from "../actions/orderActions";
 import {
-  ORDER_DELIVER_RESET,
   ORDER_PAY_RESET,
+  ORDER_DELIVER_RESET,
 } from "../constants/orderConstants";
 
-const OrderScreen = () => {
-  const navigate = useNavigate();
+const OrderScreen2 = () => {
   const orderId = useParams().id;
+  const navigate = useNavigate();
+
   const [sdkReady, setSdkReady] = useState(false);
 
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ const OrderScreen = () => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, orderId, successPay, successDeliver, order, navigate]);
+  }, [dispatch, orderId, successPay, successDeliver, order]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);
@@ -84,6 +85,7 @@ const OrderScreen = () => {
   const deliverHandler = () => {
     dispatch(deliverOrder(order));
   };
+
   return loading ? (
     <Loader />
   ) : error ? (
@@ -203,15 +205,20 @@ const OrderScreen = () => {
                 </ListGroup.Item>
               )}
               {loadingDeliver && <Loader />}
-              <ListGroup.Item>
-                <Button
-                  type='button'
-                  className='btn btn-block'
-                  onClick={deliverHandler}
-                >
-                  Mark As Delivered
-                </Button>
-              </ListGroup.Item>
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      type='button'
+                      className='btn btn-block'
+                      onClick={deliverHandler}
+                    >
+                      Mark As Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )}
             </ListGroup>
           </Card>
         </Col>
@@ -220,4 +227,4 @@ const OrderScreen = () => {
   );
 };
 
-export default OrderScreen;
+export default OrderScreen2;
